@@ -1,127 +1,173 @@
+# <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Overleaf_Logo.svg" width="36" height="36" alt="Overleaf" valign="middle" /> Overleaf-LaTeX-Sync · Overleaf Two-Way Sync
 
-olsync is for overleaf.
-olcesync is for the community edition.
-Remember to click "accept all cookies" when logging in.
+<sub>Title logo: [Overleaf Logo.svg](https://commons.wikimedia.org/wiki/File:Overleaf_Logo.svg) on Wikimedia Commons — © Overleaf, [CC BY 2.5](https://creativecommons.org/licenses/by/2.5/). *This project is not affiliated with Overleaf; see [Disclaimer](#disclaimer).*</sub>
 
+**Overleaf-LaTeX-Sync:** write LaTeX locally with **Claude Code**, **Codex**, **Cursor**, or any editor — then sync to [Overleaf](https://www.overleaf.com) in a workflow similar to **Git-style two-way sync** (no need for Overleaf’s paid in-browser AI or hosted Git integrations for this path).
 
-# Overleaf-Sync
-### Easy Overleaf Two-Way Synchronization
+<div align="center">
 
-**Overleaf-LaTeX-Sync** — write LaTeX locally with your own AI tooling, then push changes to [Overleaf](https://www.overleaf.com) in a **Git-style two-way sync** workflow.
+[![License: MIT](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![LaTeX](https://img.shields.io/badge/LaTeX-008080?style=for-the-badge&logo=latex&logoColor=white)](https://www.latex-project.org/)
+[![Overleaf](https://img.shields.io/badge/Overleaf-46A247?style=for-the-badge&logo=overleaf&logoColor=white)](https://www.overleaf.com/)
 
-![Made In Austria](https://img.shields.io/badge/Made%20in-Austria-%23ED2939.svg) ![PyPI - License](https://img.shields.io/pypi/l/overleaf-sync.svg) ![PyPI](https://img.shields.io/pypi/v/overleaf-sync.svg) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/overleaf-sync.svg)
+[![PySide6 · Qt](https://img.shields.io/badge/PySide6%20%7C%20Qt-41CD52?style=for-the-badge&logo=qt&logoColor=white)](https://wiki.qt.io/Qt_for_Python)
+[![Click](https://img.shields.io/badge/Click-cli-7c3aed?style=for-the-badge)](https://click.palletsprojects.com/)
+[![Socket.IO](https://img.shields.io/badge/Socket.IO-010101?style=for-the-badge&logo=socketdotio&logoColor=white)](https://socket.io/)
+[![Requests](https://img.shields.io/badge/Requests-2B5B84?style=for-the-badge&logo=python&logoColor=white)](https://requests.readthedocs.io/)
 
-This tool provides an easy way to synchronize Overleaf projects from and to your local computer. No paid account necessary.
+[![Platform](https://img.shields.io/badge/OS-Windows%20%7C%20macOS%20%7C%20Linux-6e7681?style=for-the-badge&logo=linux&logoColor=white)](#requirements)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-8b5cf6?style=for-the-badge)](#contributing)
+[![Upstream](https://img.shields.io/badge/Upstream-moritzgloeckl%2Foverleaf--sync-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/moritzgloeckl/overleaf-sync)
+
+</div>
 
 ![Overleaf-LaTeX-Sync overview](image/overleaf-latex-sync.png)
 
-## Why local AI + this sync?
+## ✨ Why local AI + this tool
 
-- **Overleaf add-ons:** In-browser **AI** and **Git–Overleaf sync** are often **paid** features on Overleaf’s plans. This project does not replace those products; it gives you a **free-account-friendly** path: keep the **official web editor + PDF** on Overleaf, while doing heavy editing **on your machine**.
-- **Use your own AI stack:** Edit `.tex` (and assets) in **Claude Code**, **Codex**, **Cursor**, or any local editor with the assistants you already pay for (or run offline). You stay in control of prompts, models, and data.
-- **Git-like rhythm:** Pull remote changes down, merge/review locally with normal **Git**, then sync the working tree **to Overleaf** — similar to pushing a branch, but via this tool’s **two-way sync** (`ols` / `python -m olsync.olsync`).
-- **Same collaboration model:** Collaborators keep using Overleaf in the browser; you use local AI + sync when it suits you.
-----
+- **Paid features elsewhere:** Overleaf often bundles **built-in AI** and **Git–Overleaf** style sync behind **paid** plans. This project does **not** replace Overleaf products; it is an **MIT-licensed** helper so you use a **free Overleaf tier** plus **your own machine**.
+- **Your stack:** Edit `.tex` and assets with **your** AI tools and repos (e.g. local Git next to your files). Collaborators can keep using Overleaf in the browser.
+- **Two-way mirror:** Pull remote snapshots down, reconcile locally (including with Git), then push changes back via the sync commands below.
 
-## Features
-- Sync your locally modified `.tex` (and other) files to your Overleaf projects
-- Sync your remotely modified `.tex` (and other) files to computer
-- Works with free Overleaf account
-- No Git or Dropbox required
-- Does not steal or store your login credentials (works with a persisted cookie, logging in is done on the original Overleaf website)
+**中文摘要：** Overleaf 上的内置 **AI** 与 **Git 同步**通常为 **付费功能**。本项目让你在本地使用 **Claude Code / Codex / Cursor** 等工具编写 LaTeX，再将工作区 **双向同步** 到 Overleaf，节奏接近 Git 协作；请以 [Overleaf 官方条款](https://www.overleaf.com) 为准。
 
-## How To Use
-### Install
-The package is available via [PyPI](https://pypi.org/project/overleaf-sync/). Just run:
+---
 
-```
-moritz@github:~/test$ pip3 install overleaf-sync
-```
+## 📂 Repository layout
 
-That's it! Depending on your local Python installation, you might need to use `pip` instead of `pip3`.
-
-### Prerequisites
-- Create your project on [Overleaf](https://www.overleaf.com/project), for example a project named `test`. Overleaf-sync is not able to create projects (yet).
-- Create a folder, preferably with the same name as the project (`test`) on your computer.
-- Execute the script from that folder (`test`).
-- If you do not specify the project name, overleaf-sync uses the current folder's name as the project name.
-
-### Usage
-#### Login
-```
-moritz@github:~/test$ ols login [--path]
-Login successful. Cookie persisted as `.olauth`. You may now sync your project.
-```
-
-Logging in will be handled by a mini web browser opening on your device (using Qt5). You can then enter your username and password securely on the official Overleaf website. You might get asked to solve a CAPTCHA in the process. Your credentials are sent to Overleaf over HTTPS.
-
-It then stores your *cookie* (**not** your login credentials) in a hidden file called `.olauth` in the same folder you run the command from. It is possible to store the cookie elsewhere using the `--path` option. The cookie file will not be synced to or from Overleaf.
-
-Keep the `.olauth` file save, as it can be used to log in into your account.
-
-### Listing all projects
-```
-moritz@github:~/test$ ols list [--store-path -v/--verbose]
-10/31/2021, 01:23:45 - Project A
-09/21/2020, 01:23:45 - Project B
-08/11/2019, 01:23:45 - Project C
-07/01/2018, 01:23:45 - Project D
+```text
+.
+├── LICENSE                # MIT
+├── README.md              # This file
+├── pyproject.toml         # Flit metadata (targets PyPI package name "overleaf-sync"; nested layout → prefer install via olsync/ below)
+├── requirements.txt       # Pinned-ish deps for olsync (SaaS) dev install
+├── image/
+│   └── overleaf-latex-sync.png   # Promo / architecture diagram (add to commits if missing locally)
+├── olsync/                # Hosted Overleaf SaaS (**www.overleaf.com**)
+│   ├── setup.py           # setuptools: install editable from this folder
+│   └── olsync/
+│       ├── __init__.py
+│       ├── olclient.py    # HTTP API, Socket.IO (project tree), upload/delete/compile helpers
+│       ├── olbrowserlogin.py   # Embedded browser login; persists cookie (+ GCLB fix in this fork)
+│       └── olsync.py      # Click CLI: login, list, download (PDF), default two-way sync
+└── olcesync/              # Sync with **self-hosted Overleaf Community Edition**
+    ├── requirements.txt
+    ├── setup.py
+    └── olcesync/
+        ├── comm.py        # Shared JS / cookie names for CE
+        ├── olclient.py    # Same ideas as olsync; uses server IP, optional TLS verify off
+        ├── olbrowserlogin.py
+        └── olsync.py      # CLI: login requires `-s/--server_ip`, etc.
 ```
 
-Use `ols list` to conveniently list all projects in your account available for syncing. 
+- **`olsync`** — Targets **https://www.overleaf.com** (fixed host in `olclient.py` / `olbrowserlogin.py`).
+- **`olcesync`** — Targets an **HTTPS** instance you host; login takes **`-s <host-or-IP>`** (see `--help` after install).
 
-### Downloading project's PDF
+---
+
+## ⚡ Features (both tracks, where applicable)
+
+| Capability | Notes |
+|------------|------|
+| **Login** | Opens **PySide6** WebEngine onto the real login page (CAPTCHA-safe path). Saves **cookie** to `.olauth` (not your password). Accept **all cookies** in the banner when prompted. |
+| **List projects** | `… list` — prints projects from dashboard metadata. |
+| **Two-way sync** | Default command (no subcommand): download ZIP, mirror **remote ↔ local** with prompts on conflicts/deletes. |
+| **`-l` / `-r`** | Local-only (`-l`) or remote-only (`-r`) sync; useful with Git on your side. |
+| **`-n`** / **`.olproject_name`** | Map local folder ↔ Overleaf **display name** (spaces allowed in name file). Order: `-n` → `.olproject_name` → current directory name. |
+| **PDF** | `… download` — compile-and-fetch PDF (saas `olsync` only flow in this repo’s CE tree may differ; CE users should verify CE routes). |
+| **Ignore list** | Optional **`.olignore`** (fnmatch patterns; not identical to `.gitignore`). |
+
+---
+
+## 📋 Requirements
+
+- **Python 3** (3.10–3.12 recommended; **3.13** works with a **newer PySide6** — see below).
+- **PySide6** (Qt WebEngine for login).
+- **socketIO-client**, **requests**, **beautifulsoup4**, **click**, **yaspin**, **python-dateutil**.
+
+**Python 3.13:** `requirements.txt` pins `PySide6==6.5.0`, which may **not** install on 3.13. Use e.g. `PySide6>=6.8.2` instead.
+
+---
+
+## 📦 Install from source (recommended for this repo)
+
+### A. `olsync` — hosted Overleaf (overleaf.com)
+
+```bash
+cd /path/to/overleaf-sync
+python -m venv .venv
+# Windows: .venv\Scripts\activate
+# macOS/Linux: source .venv/bin/activate
+python -m pip install -U pip
+python -m pip install -r requirements.txt
+# If PySide6 fails on 3.13:
+#   python -m pip install "PySide6>=6.8.2"
+python -m pip install -e ./olsync
 ```
-moritz@github:~/test$ ols download [--name --download-path --store-path -v/--verbose]
+
+Run the CLI (setuptools `setup.py` here may **not** register the `ols` console script — use the module form):
+
+```bash
+python -m olsync.olsync login
+python -m olsync.olsync list
+python -m olsync.olsync              # two-way sync
+python -m olsync.olsync -l           # push local → Overleaf only
+python -m olsync.olsync -r           # pull Overleaf → local only
+python -m olsync.olsync -n "My Project Name"
+python -m olsync.olsync -v           # verbose tracebacks
 ```
 
-Use `ols download` to compile and download your project's PDF. Specify a download path if you do not want to store the PDF file in the current folder. Currently only downloads the first PDF file it finds.
+If `pip install` from **repository root** via Flit fails (`pyproject.toml` expects a flat `olsync/` module path), **always install from `./olsync`** as above.
 
-### Syncing
-```
-moritz@github:~/test$ ols [-l/--local-only -r/--remote-only --store-path -p/--path -i/--olignore]
-```
+**Upstream PyPI (different code / may lag this repo):** [`pip install overleaf-sync`](https://pypi.org/project/overleaf-sync/) from [moritzgloeckl/overleaf-sync](https://github.com/moritzgloeckl/overleaf-sync); that path may install an `ols` entry point but can be **out of date** versus current overleaf.com behaviour.
 
-Just calling `ols` will two-way sync your project. When there are changes both locally, and remotely you will be asked which file to keep. Using the `-l` or `-r` option you can specify to either sync local project files to Overleaf only or Overleaf files to local ones only respectively. When using these options you can also sync deleted files. If a file has been deleted it can either be deleted on the target (remote when `-l`, local when `-r`) as well, restored on the source (local when `-l`, remote when `-r`) or ignored.
+### B. `olcesync` — Overleaf Community Edition (self-hosted)
 
-The option `--store-path` specifies the path of the cookie file created by the `login` command. If you did not change its path, you do not need to specify this argument. The `-p/--path` option allows you to specify a different sync folder than the one you're calling `ols` from. The `-i/--olignore` option allows you to specify the path of an `.olignore` file. It uses `fnmatch` internally, so it may have some similarity to `.gitignore` but doesn't work exactly the same. For example, if you wish to exclude a specific folder named `out`, you need to specify it as `out/*`. See [here](https://docs.python.org/3/library/fnmatch.html) for more information.
-
-Sample Output:
-
-```
-Project queried successfully.
-✅  Querying project
-Project downloaded successfully.
-✅  Downloading project
-
-Syncing files from remote to local
-====================
-
-[SYNCING] report.tex
-report.tex does not exist on local. Creating file.
-
-[SYNCING] other-report.tex
-other-report.tex does not exist on local. Creating file.
-
-
-✅  Syncing files from remote to local
+```bash
+python -m pip install -r olcesync/requirements.txt
+python -m pip install -e ./olcesync
+python -m olcesync.olsync --help    # login: -s / --server_ip required
 ```
 
-## Known Bugs
-- When modifying a file on Overleaf and immediately syncing afterwards, the tool might not detect the changes. Please allow 1-2 minutes after modifying a file on Overleaf before syncing it to your local computer.
+---
 
-## Contributing
+## 🔄 Typical workflow with Git locally
 
-All pull requests and change/feature requests are welcome.
+1. Create the project on Overleaf first (this tool does **not** create projects).
+2. Clone/open a folder on disk; optionally `git init` and commit as usual.
+3. `python -m olsync.olsync login` → creates **`.olauth`** in the current directory (never commit secrets — see `.gitignore`).
+4. Put the exact Overleaf title in **`.olproject_name`** one line or pass **`-n "…"`**.
+5. `python -m olsync.olsync` or `-l`/`-r` after editing locally.
 
-## Disclaimer
+---
+
+## 🔒 Security & hygiene
+
+- **`.olauth`** is a login **session** equivalent — treat like a password; already listed in `.gitignore`.
+- You only authenticate on **official** Overleaf (saas) pages inside the embedded browser.
+
+---
+
+## ⚠️ Known limitations
+
+- After editing on Overleaf’s web UI, wait **about 1–2 minutes** before syncing or changes may look stale ([original note](https://github.com/moritzgloeckl/overleaf-sync)).
+- This software is **not** affiliated with Overleaf (see Disclaimer below).
+
+---
+
+## 🤝 Contributing
+
+Pull requests and issues are welcome — especially fixes for evolving Overleaf HTML / Socket APIs.
+
+## ⚖️ Disclaimer
+
 THE AUTHOR OF THIS SOFTWARE AND THIS SOFTWARE IS NOT ENDORSED BY, DIRECTLY AFFILIATED WITH, MAINTAINED, AUTHORIZED, OR SPONSORED BY OVERLEAF OR WRITELATEX LIMITED. ALL PRODUCT AND COMPANY NAMES ARE THE REGISTERED TRADEMARKS OF THEIR ORIGINAL OWNERS. THE USE OF ANY TRADE NAME OR TRADEMARK IS FOR IDENTIFICATION AND REFERENCE PURPOSES ONLY AND DOES NOT IMPLY ANY ASSOCIATION WITH THE TRADEMARK HOLDER OF THEIR PRODUCT BRAND.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 THIS SOFTWARE WAS DESIGNED TO BE USED ONLY FOR RESEARCH PURPOSES. THIS SOFTWARE COMES WITH NO WARRANTIES OF ANY KIND WHATSOEVER. USE IT AT YOUR OWN RISK! IF THESE TERMS ARE NOT ACCEPTABLE, YOU AREN'T ALLOWED TO USE THE CODE.
 
-## Upstream
+## 🔗 Upstream
 
 Initial project source: [https://github.com/moritzgloeckl/overleaf-sync.git](https://github.com/moritzgloeckl/overleaf-sync.git)
-
