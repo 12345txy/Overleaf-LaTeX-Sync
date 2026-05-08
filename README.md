@@ -1,6 +1,6 @@
-# <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Overleaf_Logo.svg" width="36" height="36" alt="Overleaf" valign="middle" /> Overleaf-LaTeX-Sync · Overleaf Two-Way Sync
+# Overleaf-LaTeX-Sync · Overleaf Two-Way Sync <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Overleaf_Logo.svg" width="36" height="36" alt="Overleaf" valign="middle" />
 
-<sub>Title logo: [Overleaf Logo.svg](https://commons.wikimedia.org/wiki/File:Overleaf_Logo.svg) on Wikimedia Commons — © Overleaf, [CC BY 2.5](https://creativecommons.org/licenses/by/2.5/). *This project is not affiliated with Overleaf; see [Disclaimer](#disclaimer).*</sub>
+<sub>Title logo: [Overleaf Logo.svg](https://commons.wikimedia.org/wiki/File:Overleaf_Logo.svg) on Wikimedia Commons — © Overleaf, [CC BY 2.5](https://creativecommons.org/licenses/by/2.5/). *This project is not affiliated with Overleaf; see [Disclaimer](#disclaimer).*</sub>  
 
 **Overleaf-LaTeX-Sync:** write LaTeX locally with **Claude Code**, **Codex**, **Cursor**, or any editor — then sync to [Overleaf](https://www.overleaf.com) in a workflow similar to **Git-style two-way sync** (no need for Overleaf’s paid in-browser AI or hosted Git integrations for this path).
 
