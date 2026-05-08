@@ -7,10 +7,20 @@ Remember to click "accept all cookies" when logging in.
 # Overleaf-Sync
 ### Easy Overleaf Two-Way Synchronization
 
+**Overleaf-LaTeX-Sync** — write LaTeX locally with your own AI tooling, then push changes to [Overleaf](https://www.overleaf.com) in a **Git-style two-way sync** workflow.
+
 ![Made In Austria](https://img.shields.io/badge/Made%20in-Austria-%23ED2939.svg) ![PyPI - License](https://img.shields.io/pypi/l/overleaf-sync.svg) ![PyPI](https://img.shields.io/pypi/v/overleaf-sync.svg) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/overleaf-sync.svg)
 
 This tool provides an easy way to synchronize Overleaf projects from and to your local computer. No paid account necessary.
 
+![Overleaf-LaTeX-Sync overview](image/overleaf-latex-sync.png)
+
+## Why local AI + this sync?
+
+- **Overleaf add-ons:** In-browser **AI** and **Git–Overleaf sync** are often **paid** features on Overleaf’s plans. This project does not replace those products; it gives you a **free-account-friendly** path: keep the **official web editor + PDF** on Overleaf, while doing heavy editing **on your machine**.
+- **Use your own AI stack:** Edit `.tex` (and assets) in **Claude Code**, **Codex**, **Cursor**, or any local editor with the assistants you already pay for (or run offline). You stay in control of prompts, models, and data.
+- **Git-like rhythm:** Pull remote changes down, merge/review locally with normal **Git**, then sync the working tree **to Overleaf** — similar to pushing a branch, but via this tool’s **two-way sync** (`ols` / `python -m olsync.olsync`).
+- **Same collaboration model:** Collaborators keep using Overleaf in the browser; you use local AI + sync when it suits you.
 ----
 
 ## Features
